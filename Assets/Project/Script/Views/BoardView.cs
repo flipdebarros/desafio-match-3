@@ -15,7 +15,7 @@ namespace Gazeus.DesafioMatch3.Views
         [SerializeField] private GridLayoutGroup _boardContainer;
         [SerializeField] private TilePrefabRepository _tilePrefabRepository;
         [SerializeField] private TileSpotView _tileSpotPrefab;
-
+        
         private GameObject[][] _tiles;
         private TileSpotView[][] _tileSpots;
 
