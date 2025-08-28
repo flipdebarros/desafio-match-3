@@ -9,19 +9,25 @@ namespace Gazeus.DesafioMatch3.Controllers
 {
     public class BoardController
     {
-        private bool _isAnimating;
-        private int _selectedX = -1;
-        private int _selectedY = -1;
+        public event Action<int> OnMatch 
+        {
+            add => _view.OnTilesDestroyed += value;
+            remove => _view.OnTilesDestroyed -= value;
+        }
 
         private readonly BoardModel _model;
         private readonly BoardView _view;
         private readonly int _boardWidth;
         private readonly int _boardHeight;
 
+        private bool _isAnimating;
+        private int _selectedX = -1;
+        private int _selectedY = -1;
+
         public BoardController(
-            BoardModel model, 
+            BoardModel model,
             BoardView view,
-            int boardWidth, 
+            int boardWidth,
             int boardHeight
         )
         {
@@ -34,7 +40,7 @@ namespace Gazeus.DesafioMatch3.Controllers
         public void Initialize()
         {
             AddListeners();
-            
+
             List<List<Tile>> board = _model.StartGame(_boardWidth, _boardHeight);
             _view.CreateBoard(board);
         }

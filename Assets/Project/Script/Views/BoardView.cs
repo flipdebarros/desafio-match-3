@@ -11,6 +11,7 @@ namespace Gazeus.DesafioMatch3.Views
     public class BoardView : MonoBehaviour
     {
         public event Action<int, int> TileClicked;
+        public event Action<int> OnTilesDestroyed;
 
         [SerializeField] private GridLayoutGroup _boardContainer;
         [SerializeField] private TilePrefabRepository _tilePrefabRepository;
@@ -77,14 +78,16 @@ namespace Gazeus.DesafioMatch3.Views
 
         public Tween DestroyTiles(List<Vector2Int> matchedPosition)
         {
-            for (int i = 0; i < matchedPosition.Count; i++)
+            int tileCount = matchedPosition.Count;
+            for (int i = 0; i < tileCount; i++)
             {
                 Vector2Int position = matchedPosition[i];
                 Destroy(_tiles[position.y][position.x]);
                 _tiles[position.y][position.x] = null;
             }
-
-            return DOVirtual.DelayedCall(0.2f, () => { });
+            
+            OnTilesDestroyed?.Invoke(tileCount);
+            return DOVirtual.DelayedCall(0.2f, () => {});
         }
 
         public Tween MoveTiles(List<MovedTileInfo> movedTiles)

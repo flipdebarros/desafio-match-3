@@ -8,6 +8,7 @@ namespace Gazeus.DesafioMatch3.Core
     public class GameService
     {
         public BoardModel BoardModel;
+        public ScoreModel ScoreModel;
         
         public GameService()
         {
@@ -27,6 +28,7 @@ namespace Gazeus.DesafioMatch3.Core
         private void CreateModels()
         {
             BoardModel = new BoardModel();
+            ScoreModel = new ScoreModel(BoardModel);
         }
 
         private void InitializeModels()

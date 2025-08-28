@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Gazeus.DesafioMatch3.Models
 {
@@ -138,7 +140,7 @@ namespace Gazeus.DesafioMatch3.Models
                 {
                     MatchedPosition = matchedPosition,
                     MovedTiles = movedTilesList,
-                    AddedTiles = addedTiles
+                    AddedTiles = addedTiles,
                 };
                 boardSequences.Add(sequence);
                 matchedTiles = FindMatches(newBoard);
