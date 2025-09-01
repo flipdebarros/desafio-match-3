@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -12,7 +13,7 @@ namespace Gazeus.DesafioMatch3.Models
         private int _tileCount;
 
         public void Initialize() { }
-        
+
         public bool IsValidMovement(int fromX, int fromY, int toX, int toY)
         {
             List<List<Tile>> newBoard = CopyBoard(_boardTiles);
@@ -57,23 +58,22 @@ namespace Gazeus.DesafioMatch3.Models
             (newBoard[toY][toX], newBoard[fromY][fromX]) = (newBoard[fromY][fromX], newBoard[toY][toX]);
 
             List<BoardSequence> boardSequences = new();
-            List<List<bool>> matchedTiles = FindMatches(newBoard);
+            List<Vector2Int> changedTiles = new();
+            changedTiles.Add(new Vector2Int(fromX, fromY));
+            changedTiles.Add(new Vector2Int(toX, toY));
+            List<Vector2Int> matchedPosition = FindMatches(newBoard, changedTiles);
 
-            while (HasMatch(matchedTiles))
+            while (matchedPosition.Count > 0)
             {
+                changedTiles.Clear();
+                
                 //Cleaning the matched tiles
-                List<Vector2Int> matchedPosition = new();
-                for (int y = 0; y < newBoard.Count; y++)
-                {
-                    for (int x = 0; x < newBoard[y].Count; x++)
-                    {
-                        if (matchedTiles[y][x])
-                        {
-                            matchedPosition.Add(new Vector2Int(x, y));
-                            newBoard[y][x] = new Tile { Id = -1, Type = -1 };
-                        }
-                    }
-                }
+                foreach (Vector2Int pos in matchedPosition)
+                    newBoard[pos.y][pos.x] = new Tile { Id = -1, Type = -1 };
+
+                //The code below needs this collection to be ordered to work correctly, this is not ideal
+                //Ordering only the matched positions is still better than checking every position in the matrix and adding to this list
+                matchedPosition = matchedPosition.OrderBy(pos => pos.y * newBoard.Count + pos.x).ToList();
 
                 // Dropping the tiles
                 Dictionary<int, MovedTileInfo> movedTiles = new();
@@ -115,6 +115,8 @@ namespace Gazeus.DesafioMatch3.Models
                     }
                 }
 
+                changedTiles.AddRange(movedTilesList.Select(x => x.To));
+
                 // Filling the board
                 List<AddedTileInfo> addedTiles = new();
                 for (int y = newBoard.Count - 1; y > -1; y--)
@@ -135,6 +137,8 @@ namespace Gazeus.DesafioMatch3.Models
                         }
                     }
                 }
+                
+                changedTiles.AddRange(addedTiles.Select(x => x.Position));
 
                 BoardSequence sequence = new()
                 {
@@ -143,7 +147,7 @@ namespace Gazeus.DesafioMatch3.Models
                     AddedTiles = addedTiles,
                 };
                 boardSequences.Add(sequence);
-                matchedTiles = FindMatches(newBoard);
+                matchedPosition = FindMatches(newBoard, changedTiles);
             }
 
             _boardTiles = newBoard;
@@ -210,59 +214,90 @@ namespace Gazeus.DesafioMatch3.Models
             return board;
         }
 
-        private static List<List<bool>> FindMatches(List<List<Tile>> newBoard)
+        private static List<Vector2Int> FindMatches(List<List<Tile>> newBoard, List<Vector2Int> changedTiles)
         {
-            List<List<bool>> matchedTiles = new();
-            for (int y = 0; y < newBoard.Count; y++)
+            HashSet<Vector2Int> matchedTiles = new();
+            HashSet<Vector2Int> visitedTiles = new();
+            Stack<Vector2Int> tileStack = new();
+
+            int widht = newBoard[0].Count;
+            int height = newBoard.Count;
+
+            foreach (Vector2Int tile in changedTiles)
             {
-                matchedTiles.Add(new List<bool>(newBoard[y].Count));
-                for (int x = 0; x < newBoard.Count; x++)
+                if (visitedTiles.Contains(tile))
+                    continue;
+
+                int type = newBoard[tile.y][tile.x].Type;
+                tileStack.Push(tile);
+                while (tileStack.Count > 0)
                 {
-                    matchedTiles[y].Add(false);
+                    Vector2Int curr = tileStack.Pop();
+                    (int x, int y) = (curr.x, curr.y);
+
+                    if (!IsValidCoordinates(x, y, widht, height) || newBoard[y][x].Type != type || !visitedTiles.Add(curr))
+                        continue;
+
+                    if(!CheckMatches(newBoard, matchedTiles, x, y))
+                        continue;
+
+                    tileStack.Push(new Vector2Int(x - 1, y));
+                    tileStack.Push(new Vector2Int(x + 1, y));
+                    tileStack.Push(new Vector2Int(x, y - 1));
+                    tileStack.Push(new Vector2Int(x, y + 1));
                 }
             }
 
-            for (int y = 0; y < newBoard.Count; y++)
-            {
-                for (int x = 0; x < newBoard[y].Count; x++)
-                {
-                    if (x > 1 &&
-                        newBoard[y][x].Type == newBoard[y][x - 1].Type &&
-                        newBoard[y][x - 1].Type == newBoard[y][x - 2].Type)
-                    {
-                        matchedTiles[y][x] = true;
-                        matchedTiles[y][x - 1] = true;
-                        matchedTiles[y][x - 2] = true;
-                    }
-
-                    if (y > 1 &&
-                        newBoard[y][x].Type == newBoard[y - 1][x].Type &&
-                        newBoard[y - 1][x].Type == newBoard[y - 2][x].Type)
-                    {
-                        matchedTiles[y][x] = true;
-                        matchedTiles[y - 1][x] = true;
-                        matchedTiles[y - 2][x] = true;
-                    }
-                }
-            }
-
-            return matchedTiles;
+            return matchedTiles.ToList();
         }
 
-        private static bool HasMatch(List<List<bool>> list)
+        private static bool CheckMatches(List<List<Tile>> newBoard, HashSet<Vector2Int> matchedTiles, int x, int y)
         {
-            for (int y = 0; y < list.Count; y++)
-            {
-                for (int x = 0; x < list[y].Count; x++)
-                {
-                    if (list[y][x])
-                    {
-                        return true;
-                    }
-                }
-            }
+            int horizontalMatches = CheckMatchHorizontal(newBoard, x, y);
+            int verticalMatches = CheckMatchVertical(newBoard, x, y);
+            
+            if (horizontalMatches < 3 && verticalMatches < 3) 
+                return false;
+            
+            matchedTiles.Add(new Vector2Int(x, y));
+            return true;
+        }
 
-            return false;
+        private static int CheckMatchHorizontal(List<List<Tile>> board, int x, int y)
+        {
+            int count = 1;
+            if (x > 1 && board[y][x].Type == board[y][x - 1].Type && board[y][x - 1].Type == board[y][x - 2].Type)
+                count += 2;
+            else if (x > 0 && board[y][x].Type == board[y][x - 1].Type)
+                count++;
+            
+            if (x < board[y].Count - 2 && board[y][x].Type == board[y][x + 1].Type && board[y][x + 1].Type == board[y][x + 2].Type)
+                count += 2;
+            else if (x < board[y].Count - 1 && board[y][x].Type == board[y][x + 1].Type)
+                count++;
+
+            return count;
+        }
+
+        private static int CheckMatchVertical(List<List<Tile>> board, int x, int y)
+        {
+            int count = 1;
+            if (y > 1 && board[y][x].Type == board[y - 1][x].Type && board[y - 1][x].Type == board[y - 2][x].Type)
+                count += 2;
+            else if (y > 0 && board[y][x].Type == board[y - 1][x].Type)
+                count++;
+            
+            if (y < board.Count - 2 && board[y][x].Type == board[y + 1][x].Type && board[y + 1][x].Type == board[y + 2][x].Type)
+                count += 2;
+            else if (y < board.Count - 1 && board[y][x].Type == board[y + 1][x].Type)
+                count++;
+
+            return count;
+        }
+
+        private static bool IsValidCoordinates(int x, int y, int width, int height)
+        {
+            return x >= 0 && x < width && y >= 0 && y < height;
         }
     }
 }
