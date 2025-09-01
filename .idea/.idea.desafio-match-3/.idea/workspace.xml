@@ -5,7 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2178ee9c-15cd-4c16-acb8-7cefd3a9f5ff" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/BombSpecialMatch.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/BombSpecialMatch.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/ColorBombSpecialMatch.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/ColorBombSpecialMatch.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/HorizontalLineSweepSpecialMatch.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/HorizontalLineSweepSpecialMatch.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/ISpecialMatch.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/ISpecialMatch.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/SpecialItemType.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/SpecialItemType.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/VerticalLineSweepSpecialMatch.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/VerticalLineSweepSpecialMatch.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.desafio-match-3/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.desafio-match-3/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Prefabs/BlueTile.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Prefabs/BlueTile.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Prefabs/GreenTile.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Prefabs/GreenTile.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Prefabs/OrageTile.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Prefabs/OrageTile.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Prefabs/PinkTile.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Prefabs/PinkTile.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Prefabs/PurpleTile.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Prefabs/PurpleTile.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Prefabs/RedTile.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Prefabs/RedTile.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Prefabs/YellowTile.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Prefabs/YellowTile.prefab.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/BoardModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/BoardModel.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -116,7 +142,7 @@
       <workItem from="1756323906107" duration="4392000" />
       <workItem from="1756407882784" duration="8147000" />
       <workItem from="1756674342192" duration="5673000" />
-      <workItem from="1756757891295" duration="3602000" />
+      <workItem from="1756757891295" duration="9122000" />
     </task>
     <servers />
   </component>
