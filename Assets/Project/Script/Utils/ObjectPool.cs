@@ -40,7 +40,8 @@ namespace Gazeus.DesafioMatch3.Project.Script.Utils
 
         private void InstantiateObject()
         {
-            _available.Push(Object.Instantiate(_prefab, _parent));
+            TObj obj = Object.Instantiate(_prefab, _parent);
+            _available.Push(obj);
         }
     }
 }

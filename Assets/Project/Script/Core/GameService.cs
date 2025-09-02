@@ -33,7 +33,7 @@ namespace Gazeus.DesafioMatch3.Core
 
         private void InitializeModels()
         {
-            BoardModel.Initialize();
+            
         }
 
         private void DisposeModels()

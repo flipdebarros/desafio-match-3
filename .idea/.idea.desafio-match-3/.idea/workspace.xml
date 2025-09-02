@@ -5,32 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2178ee9c-15cd-4c16-acb8-7cefd3a9f5ff" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Project/Prefabs/Tile.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Project/Prefabs/Tile.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Utils.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Utils/ObjectPool.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Utils/ObjectPool.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Views/TileView.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Views/TileView.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.desafio-match-3/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.desafio-match-3/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Prefabs/BlueTile.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Prefabs/BlueTile.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Prefabs/GreenTile.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Prefabs/GreenTile.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Prefabs/OrageTile.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Prefabs/OrageTile.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Prefabs/PinkTile.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Prefabs/PinkTile.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Prefabs/PurpleTile.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Prefabs/PurpleTile.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Prefabs/RedTile.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Prefabs/RedTile.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Prefabs/YellowTile.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Prefabs/YellowTile.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Scenes/Gameplay.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Scenes/Gameplay.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/ScriptableObjects/TilePrefabRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/ScriptableObjects/TilePrefabRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Views/BoardView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Views/BoardView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/ScriptableObjects/TilePrefabRepository.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/ScriptableObjects/TilePrefabRepository.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Core/GameService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Core/GameService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/BoardModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/BoardModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Utils/ObjectPool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Utils/ObjectPool.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +22,14 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1071a2cb0cb3433aae80a793c277a04846ac00/59/5618517e/ThrowHelper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1071a2cb0cb3433aae80a793c277a04846ac00/dc/0bd9872d/String.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1071a2cb0cb3433aae80a793c277a04846ac00/de/43a1b48c/List`1.cs" root0="FORCE_HIGHLIGHTING" />
@@ -112,13 +98,15 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="21236">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="21236" />
       <option name="projectPathOnTarget" />
       <option name="runtimes">
-        <list />
+        <list>
+          <MonoRuntime />
+        </list>
       </option>
       <option name="selectedOptions">
         <list />
@@ -157,5 +145,52 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <condition expression="obj == null;" language="C#" />
+          <url>file://$PROJECT_DIR$/Assets/Project/Script/Utils/ObjectPool.cs</url>
+          <line>43</line>
+          <properties documentPath="C:\Users\leeom\OneDrive\Documents\Unity Projects\desafio-match-3\Assets\Project\Script\Utils\ObjectPool.cs" containingFunctionPresentation="Method 'InstantiateObject'">
+            <startOffsets>
+              <option value="1154" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1175" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <condition expression="obj == null;" language="C#" />
+          <url>file://$PROJECT_DIR$/Assets/Project/Script/Utils/ObjectPool.cs</url>
+          <line>37</line>
+          <properties documentPath="C:\Users\leeom\OneDrive\Documents\Unity Projects\desafio-match-3\Assets\Project\Script\Utils\ObjectPool.cs" containingFunctionPresentation="Method 'ReleaseObject'">
+            <startOffsets>
+              <option value="997" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1018" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Project/Script/Models/BoardModel.cs</url>
+          <line>105</line>
+          <properties documentPath="C:\Users\leeom\OneDrive\Documents\Unity Projects\desafio-match-3\Assets\Project\Script\Models\BoardModel.cs" containingFunctionPresentation="Method 'DropTiles'">
+            <startOffsets>
+              <option value="3925" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3973" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
