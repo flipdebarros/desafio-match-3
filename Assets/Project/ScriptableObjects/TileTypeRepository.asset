@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5a395bf00bbfe84e8896c915a55911a, type: 3}
+  m_Name: TileTypeRepository
+  m_EditorClassIdentifier: 
+  _typeEntries:
+  - type: 0
+    sprite: {fileID: 0}
+  - type: 1
+    sprite: {fileID: 21300000, guid: 11ca6c2ef94178748a366771be7aa4eb, type: 3}
+  - type: 2
+    sprite: {fileID: 21300000, guid: 77a56504b7c248d458cdbfab96e284ba, type: 3}
+  - type: 3
+    sprite: {fileID: 21300000, guid: 3ba32f5fa68af4b46b7e26b4732c2711, type: 3}
+  - type: 4
+    sprite: {fileID: 21300000, guid: 1036d556b6cf9f246a15ce6e3dcb4b3d, type: 3}
+  _variationEntries:
+  - variation: 0
+    color: {r: 0, g: 0.007843138, b: 0.6039216, a: 1}
+  - variation: 1
+    color: {r: 0.16470589, g: 0.7058824, b: 0, a: 1}
+  - variation: 2
+    color: {r: 0.90588236, g: 0.38039216, b: 0, a: 1}
+  - variation: 3
+    color: {r: 1, g: 0.79607844, b: 0, a: 1}
+  - variation: 4
+    color: {r: 0.7647059, g: 0, b: 0.6156863, a: 1}
+  - variation: 5
+    color: {r: 0.41568628, g: 0, b: 0.6313726, a: 1}
+  - variation: 6
+    color: {r: 0.69803923, g: 0, b: 0, a: 1}

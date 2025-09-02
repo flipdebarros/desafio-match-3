@@ -3,12 +3,11 @@ using UnityEngine;
 
 namespace Gazeus.DesafioMatch3.Models
 {
-    public class ColorBombSpecialMatch : ISpecialMatch
+    public class SimpleBombSpecialMatch : ISpecialMatch
     {
         public bool IsConditionMet(int horizontalMatches, int verticalMatches) => 
-            horizontalMatches >= 5 || verticalMatches >= 5;
+            horizontalMatches >= 3 && verticalMatches >= 3;
 
-        public TileType GetSpecialItemType() => TileType.ColorBomb;
-        
+        public TileType GetSpecialItemType() => TileType.SimpleBomb;
     }
 }

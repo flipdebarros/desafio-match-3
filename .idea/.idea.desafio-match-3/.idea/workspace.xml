@@ -5,15 +5,42 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2178ee9c-15cd-4c16-acb8-7cefd3a9f5ff" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/SpecialItemUtils.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/SpecialItemUtils.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/Tiles.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/Tiles/AddedSpecialItemInfo.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/Tiles/AddedSpecialItemInfo.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/Tiles/TileType.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/Tiles/TileType.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/Tiles/TileVariation.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/Tiles/TileVariation.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/VerticalRocketSpecialMatch.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/ScriptableObjects/TileTypeRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.desafio-match-3/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.desafio-match-3/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Scenes/Gameplay.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Scenes/Gameplay.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Controllers/BoardController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Controllers/BoardController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/AddedTileInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/Tiles/AddedTileInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/AddedTileInfo.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/Tiles/AddedTileInfo.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/BoardModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/BoardModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/BombSpecialMatch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/BombSpecialMatch.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/BoardSequence.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/BoardSequence.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/BombSpecialMatch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/SimpleBombSpecialMatch.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/BombSpecialMatch.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/SimpleBombSpecialMatch.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/ColorBombSpecialMatch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/ColorBombSpecialMatch.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/HorizontalLineSweepSpecialMatch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/HorizontalLineSweepSpecialMatch.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/HorizontalLineSweepSpecialMatch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/HorizontalRocketSpecialMatch.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/HorizontalLineSweepSpecialMatch.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/HorizontalRocketSpecialMatch.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/ISpecialMatch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/ISpecialMatch.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/VerticalLineSweepSpecialMatch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/VerticalLineSweepSpecialMatch.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/MovedTileInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/Tiles/MovedTileInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/MovedTileInfo.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/Tiles/MovedTileInfo.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/Tile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/Tiles/Tile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/Tile.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/Tiles/Tile.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/VerticalLineSweepSpecialMatch.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/VerticalLineSweepSpecialMatch.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/VerticalRocketSpecialMatch.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/ScriptableObjects/TilePrefabRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/ScriptableObjects/TilePrefabRepository.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/ScriptableObjects/TileTypeRepository.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Views/BoardView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Views/BoardView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Views/TileView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Views/TileView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/ScriptableObjects/TilePrefabRepository.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/ScriptableObjects/TilePrefabRepository.asset.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,13 +63,16 @@
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1071a2cb0cb3433aae80a793c277a04846ac00/59/5618517e/ThrowHelper.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1071a2cb0cb3433aae80a793c277a04846ac00/94/813c20d7/Boolean.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1071a2cb0cb3433aae80a793c277a04846ac00/dc/0bd9872d/String.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1071a2cb0cb3433aae80a793c277a04846ac00/de/43a1b48c/List`1.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/37cc348edc804f4cb176b63962c716e7177200/8c/e3a0bf30/Object.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/37cc348edc804f4cb176b63962c716e7177200/b7/3b755646/Vector2Int.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/de1f8ef4975b4eacbeb0accc1b22c9b02a000/c8/d6944d95/DOTween.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ea489521390f48908a7ce45cb17a684810fc00/d2/37a21aeb/Enumerable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ea489521390f48908a7ce45cb17a684810fc00/fd/e424a610/HashSet`1.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Project/Script/Utils/ObjectPool.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Project/ScriptableObjects/TileTypeRepository.asset" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.9/Scripts/Editor/TMP_FontAssetEditor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.9/Scripts/Runtime/TextMeshProUGUI.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -181,32 +211,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Project/Script/Models/BoardModel.cs</url>
-          <line>104</line>
-          <properties documentPath="C:\Users\leeom\OneDrive\Documents\Unity Projects\desafio-match-3\Assets\Project\Script\Models\BoardModel.cs" containingFunctionPresentation="Method 'DropTiles'">
-            <startOffsets>
-              <option value="3896" />
-            </startOffsets>
-            <endOffsets>
-              <option value="3944" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Project/Script/Models/BoardModel.cs</url>
-          <line>36</line>
-          <properties documentPath="C:\Users\leeom\OneDrive\Documents\Unity Projects\desafio-match-3\Assets\Project\Script\Models\BoardModel.cs" containingFunctionPresentation="Method 'SwapTile'">
-            <startOffsets>
-              <option value="1270" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1362" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

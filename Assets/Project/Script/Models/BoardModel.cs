@@ -8,23 +8,46 @@ namespace Gazeus.DesafioMatch3.Models
     public class BoardModel
     {
         private Tile[][] _boardTiles;
-        private List<int> _tilesTypes;
+        private List<TileVariation> _tilesVariations;
         private List<ISpecialMatch> _specialMatches;
         private int _tileCount;
 
-        public bool IsValidMovement(int fromX, int fromY, int toX, int toY) =>
-            CheckMatches(_boardTiles, fromX, fromY, _boardTiles[toY][toX].Type) || CheckMatches(_boardTiles, toX, toY, _boardTiles[fromY][fromX].Type);
+        public bool IsValidMovement(int fromX, int fromY, int toX, int toY)
+        {
+            Tile toTile = _boardTiles[toY][toX];
+            Tile fromTile = _boardTiles[fromY][fromX];
+
+            TileType toType = toTile.Type;
+            TileType fromType = fromTile.Type;
+            
+            if (toType is TileType.None || fromType is TileType.None)
+                return false;
+            
+            if (toType is not TileType.Simple && fromType is not TileType.Simple)
+                return false;
+            
+            if (toTile.Variation is TileVariation.None && fromTile.Variation is TileVariation.None)
+                return false;
+
+            if (toType is not TileType.Simple && fromTile.Variation is not TileVariation.None)
+                return true;
+                    
+            if (fromType is not TileType.Simple && toTile.Variation is not TileVariation.None)
+                return true;
+            
+            return CheckMatches(_boardTiles, fromX, fromY, toTile.Variation) || CheckMatches(_boardTiles, toX, toY, fromTile.Variation);
+        }
 
         public Tile[][] StartGame(int boardWidth, int boardHeight)
         {
-            _tilesTypes = new List<int> { 0, 1, 2, 3 };
-            _boardTiles = CreateBoard(boardWidth, boardHeight, _tilesTypes);
+            _tilesVariations = new List<TileVariation> { TileVariation.Blue, TileVariation.Green, TileVariation.Orange, TileVariation.Yellow };
+            _boardTiles = CreateBoard(boardWidth, boardHeight, _tilesVariations);
             _specialMatches = new List<ISpecialMatch>
             {
                 new ColorBombSpecialMatch(),
-                new BombSpecialMatch(2),
-                new VerticalLineSweepSpecialMatch(),
-                new HorizontalLineSweepSpecialMatch()
+                new SimpleBombSpecialMatch(),
+                new VerticalRocketSpecialMatch(),
+                new HorizontalRocketSpecialMatch()
             };
 
             return _boardTiles;
@@ -41,24 +64,27 @@ namespace Gazeus.DesafioMatch3.Models
             List<Vector2Int> changedTiles = new();
             changedTiles.Add(new Vector2Int(fromX, fromY));
             changedTiles.Add(new Vector2Int(toX, toY));
-
+            
             HashSet<Vector2Int> matchedPosition = FindMatches(
                 newBoard,
                 changedTiles,
                 out Dictionary<Vector2Int, (int horizontal, int vertical)> matchStats
             );
-
+            
+            TryActivateSpecialItems(newBoard, matchedPosition, fromX, fromY, toX, toY);
+            
             while (matchedPosition.Count > 0)
             {
                 changedTiles.Clear();
 
-                CheckSpecialMatches(newBoard, matchStats, matchedPosition);
+                List<AddedSpecialItemInfo> addedSpecialItems = CheckSpecialMatches(newBoard, matchStats, matchedPosition);
 
                 //Cleaning the matched tiles
                 foreach (Vector2Int pos in matchedPosition)
                 {
                     Tile tile = newBoard[pos.y][pos.x];
-                    tile.Type = -1;
+                    tile.Type = TileType.None;
+                    tile.Variation = TileVariation.None;
                     tile.Id = -1;
                 }
 
@@ -73,6 +99,7 @@ namespace Gazeus.DesafioMatch3.Models
                     MatchedPosition = matchedPosition.ToList(),
                     MovedTiles = movedTilesList,
                     AddedTiles = addedTiles,
+                    AddedSpecialItems = addedSpecialItems
                 };
                 boardSequences.Add(sequence);
                 matchedPosition = FindMatches(newBoard, changedTiles, out matchStats);
@@ -82,7 +109,7 @@ namespace Gazeus.DesafioMatch3.Models
 
             return boardSequences;
         }
-
+        
         private List<MovedTileInfo> DropTiles(Tile[][] newBoard, HashSet<Vector2Int> matchedTiles, out List<Vector2Int> emptySpots)
         {
             Dictionary<int, MovedTileInfo> movedTiles = new();
@@ -94,13 +121,13 @@ namespace Gazeus.DesafioMatch3.Models
             {
                 int emptyCount = 0;
                 emptySpots.Add(new Vector2Int(x, emptyCount));
-                
+
                 if (y == 0) continue;
-                
+
                 int gap = y;
                 for (int k = y - 1; k >= 0; k--)
                 {
-                    if (newBoard[k][x].Type == -1)
+                    if (newBoard[k][x].Type is TileType.None)
                     {
                         emptySpots.Add(new Vector2Int(x, ++emptyCount));
                         continue;
@@ -127,20 +154,22 @@ namespace Gazeus.DesafioMatch3.Models
             foreach (Vector2Int spot in emptySpots)
             {
                 (int x, int y) = (spot.x, spot.y);
-                int tileType = Random.Range(0, _tilesTypes.Count);
+                int tileVariation = Random.Range(0, _tilesVariations.Count);
                 Tile tile = newBoard[y][x];
                 tile.Id = _tileCount++;
-                tile.Type = _tilesTypes[tileType];
+                tile.Variation = _tilesVariations[tileVariation];
+                tile.Type = TileType.Simple;
                 addedTiles.Add(new AddedTileInfo
                 {
                     Position = new Vector2Int(x, y),
-                    Type = tile.Type
+                    Type = tile.Type,
+                    Variation = tile.Variation
                 });
             }
             return addedTiles;
         }
-        
-        private Tile[][] CreateBoard(int width, int height, List<int> tileTypes)
+
+        private Tile[][] CreateBoard(int width, int height, List<TileVariation> tileVariations)
         {
             Tile[][] board = new Tile[height][];
             _tileCount = 0;
@@ -149,7 +178,7 @@ namespace Gazeus.DesafioMatch3.Models
                 board[y] = new Tile[width];
                 for (int x = 0; x < width; x++)
                 {
-                    board[y][x] = new Tile { Id = -1, Type = -1 };
+                    board[y][x] = new Tile { Id = -1, Type = TileType.None, Variation = TileVariation.None };
                 }
             }
 
@@ -157,38 +186,40 @@ namespace Gazeus.DesafioMatch3.Models
             {
                 for (int x = 0; x < width; x++)
                 {
-                    List<int> noMatchTypes = new(tileTypes.Count);
-                    for (int i = 0; i < tileTypes.Count; i++)
+                    List<TileVariation> noMatchVariations = new(tileVariations.Count);
+                    for (int i = 0; i < tileVariations.Count; i++)
                     {
-                        noMatchTypes.Add(_tilesTypes[i]);
+                        noMatchVariations.Add(_tilesVariations[i]);
                     }
 
                     if (x > 1 &&
-                        board[y][x - 1].Type == board[y][x - 2].Type)
+                        board[y][x - 1].Variation == board[y][x - 2].Variation)
                     {
-                        noMatchTypes.Remove(board[y][x - 1].Type);
+                        noMatchVariations.Remove(board[y][x - 1].Variation);
                     }
 
                     if (y > 1 &&
-                        board[y - 1][x].Type == board[y - 2][x].Type)
+                        board[y - 1][x].Variation == board[y - 2][x].Variation)
                     {
-                        noMatchTypes.Remove(board[y - 1][x].Type);
+                        noMatchVariations.Remove(board[y - 1][x].Variation);
                     }
 
                     board[y][x].Id = _tileCount++;
-                    board[y][x].Type = noMatchTypes[Random.Range(0, noMatchTypes.Count)];
+                    board[y][x].Variation = noMatchVariations[Random.Range(0, noMatchVariations.Count)];
+                    board[y][x].Type = TileType.Simple;
                 }
             }
 
             return board;
         }
-        
-        private void CheckSpecialMatches(
+
+        private List<AddedSpecialItemInfo> CheckSpecialMatches(
             Tile[][] newBoard,
             Dictionary<Vector2Int, (int horizontal, int vertical)> matchStats,
             HashSet<Vector2Int> matchedPosition
         )
         {
+            List<AddedSpecialItemInfo> addedSpecialItems = new();
             foreach ((Vector2Int pos, (int horizontal, int vertical)) in matchStats)
             {
                 foreach (ISpecialMatch specialMatch in _specialMatches)
@@ -196,10 +227,39 @@ namespace Gazeus.DesafioMatch3.Models
                     if (!specialMatch.IsConditionMet(horizontal, vertical))
                         continue;
 
-                    matchedPosition.UnionWith(specialMatch.AffectedTiles(newBoard, pos, newBoard[pos.y][pos.x]));
+                    //matchedPosition.UnionWith(specialMatch.AffectedTiles(newBoard, pos, newBoard[pos.y][pos.x]));
+                    matchedPosition.Remove(pos);
+                    Tile tile = newBoard[pos.y][pos.x];
+                    tile.Type = specialMatch.GetSpecialItemType();
+                    tile.Variation = TileVariation.None;
+                    addedSpecialItems.Add(new AddedSpecialItemInfo { Position = pos, Type = tile.Type, Variation = tile.Variation });
                     break;
                 }
             }
+            return addedSpecialItems;
+        }
+
+        private static void TryActivateSpecialItems(Tile[][] newBoard, HashSet<Vector2Int> matchedTiles, int fromX, int fromY, int toX, int toY)
+        {
+            Tile toTile = newBoard[toY][toX];
+            Tile fromTile = newBoard[fromY][fromX];
+
+            if (fromTile.Type is TileType.Simple && toTile.Type is TileType.Simple)
+                return;
+
+            Vector2Int position;
+            if (fromTile.Type is not TileType.Simple)
+            {
+                position = new Vector2Int(fromX, fromY);
+                matchedTiles.UnionWith(SpecialItemUtils.GetAffectedTiles(newBoard, fromTile.Type, toTile.Variation, position));
+            }
+            else
+            {
+                position = new Vector2Int(toX, toY);
+                matchedTiles.UnionWith(SpecialItemUtils.GetAffectedTiles(newBoard, toTile.Type, fromTile.Variation, position));
+            }
+            
+            matchedTiles.Add(position);
         }
         
         private static Dictionary<int, int> GetLowestGapInColumns(HashSet<Vector2Int> removedTiles)
@@ -223,13 +283,13 @@ namespace Gazeus.DesafioMatch3.Models
                 for (int x = 0; x < boardToCopy[y].Length; x++)
                 {
                     Tile tile = boardToCopy[y][x];
-                    newBoard[y][x] = new Tile { Id = tile.Id, Type = tile.Type };
+                    newBoard[y][x] = new Tile { Id = tile.Id, Type = tile.Type, Variation = tile.Variation };
                 }
             }
 
             return newBoard;
         }
-        
+
         private static HashSet<Vector2Int> FindMatches(
             Tile[][] newBoard,
             List<Vector2Int> changedTiles,
@@ -245,13 +305,13 @@ namespace Gazeus.DesafioMatch3.Models
             int width = newBoard[0].Length;
             int height = newBoard.Length;
 
-            foreach (Vector2Int tile in changedTiles)
+            foreach (Vector2Int pos in changedTiles)
             {
-                if (visitedTiles.Contains(tile))
+                if (visitedTiles.Contains(pos))
                     continue;
 
-                int type = newBoard[tile.y][tile.x].Type;
-                tileStack.Push(tile);
+                TileVariation variation = newBoard[pos.y][pos.x].Variation;
+                tileStack.Push(pos);
 
                 bool matched = false;
                 int maxHorizontal = 0;
@@ -262,11 +322,15 @@ namespace Gazeus.DesafioMatch3.Models
                     Vector2Int curr = tileStack.Pop();
                     (int x, int y) = (curr.x, curr.y);
 
-                    if (!IsValidCoordinates(x, y, width, height) || newBoard[y][x].Type != type || !visitedTiles.Add(curr))
+                    if (!IsValidCoordinates(x, y, width, height))
                         continue;
 
-                    int horizontalMatches = CheckMatchHorizontal(newBoard, x, y, type);
-                    int verticalMatches = CheckMatchVertical(newBoard, x, y, type);
+                    Tile tile = newBoard[y][x];
+                    if (tile.Type is not TileType.Simple || tile.Variation != variation || !visitedTiles.Add(curr))
+                        continue;
+
+                    int horizontalMatches = CheckMatchHorizontal(newBoard, x, y, variation);
+                    int verticalMatches = CheckMatchVertical(newBoard, x, y, variation);
 
                     if (horizontalMatches < 3 && verticalMatches < 3)
                         continue;
@@ -283,42 +347,48 @@ namespace Gazeus.DesafioMatch3.Models
                 }
 
                 if (!matched) continue;
-                matchStats.Add(tile, (maxHorizontal, maxVertical));
+                matchStats.Add(pos, (maxHorizontal, maxVertical));
             }
 
             return matchedTiles;
         }
 
-        private static bool CheckMatches(Tile[][] newBoard, int x, int y, int type) =>
-            CheckMatchHorizontal(newBoard, x, y, type) >= 3 || CheckMatchVertical(newBoard, x, y, type) >= 3;
+        private static bool CheckMatches(Tile[][] newBoard, int x, int y, TileVariation variation) => 
+            CheckMatchHorizontal(newBoard, x, y, variation) >= 3 || CheckMatchVertical(newBoard, x, y, variation) >= 3;
 
-        private static int CheckMatchHorizontal(Tile[][] board, int x, int y, int type)
+        private static int CheckMatchHorizontal(Tile[][] board, int x, int y, TileVariation variation)
         {
+            if (variation is TileVariation.None)
+                return 0;
+            
             int count = 1;
-            if (x > 1 && type == board[y][x - 1].Type && type == board[y][x - 2].Type)
+            if (x > 1 && variation == board[y][x - 1].Variation && variation == board[y][x - 2].Variation)
                 count += 2;
-            else if (x > 0 && type == board[y][x - 1].Type)
+            else if (x > 0 && variation == board[y][x - 1].Variation)
                 count++;
 
-            if (x < board[y].Length - 2 && type == board[y][x + 1].Type && type == board[y][x + 2].Type)
+            if (x < board[y].Length - 2 && variation == board[y][x + 1].Variation && variation == board[y][x + 2].Variation)
                 count += 2;
-            else if (x < board[y].Length - 1 && type == board[y][x + 1].Type)
+            else if (x < board[y].Length - 1 && variation == board[y][x + 1].Variation)
                 count++;
 
             return count;
         }
 
-        private static int CheckMatchVertical(Tile[][] board, int x, int y, int type)
+        private static int CheckMatchVertical(Tile[][] board, int x, int y, TileVariation variation)
         {
+            if (variation is TileVariation.None)
+                return 0;
+            
             int count = 1;
-            if (y > 1 && type == board[y - 1][x].Type && type == board[y - 2][x].Type)
+            if (y > 1 && variation == board[y - 1][x].Variation && variation == board[y - 2][x].Variation)
                 count += 2;
-            else if (y > 0 && type == board[y - 1][x].Type)
+            else if (y > 0 && variation == board[y - 1][x].Variation)
                 count++;
 
-            if (y < board.Length - 2 && type == board[y + 1][x].Type && type == board[y + 2][x].Type)
+            if (y < board.Length - 2 && variation == board[y + 1][x].Variation && variation == board[y + 2][x].Variation)
                 count += 2;
-            else if (y < board.Length - 1 && type == board[y + 1][x].Type)
+            else if (y < board.Length - 1 && variation == board[y + 1][x].Variation)
                 count++;
 
             return count;

@@ -66,6 +66,7 @@ namespace Gazeus.DesafioMatch3.Controllers
 
             Sequence sequence = DOTween.Sequence();
             sequence.Append(_view.DestroyTiles(boardSequence.MatchedPosition));
+            sequence.Append(_view.PlaceSpecialItems(boardSequence.AddedSpecialItems));
             sequence.Append(_view.MoveTiles(boardSequence.MovedTiles));
             sequence.Append(_view.CreateTile(boardSequence.AddedTiles));
 

@@ -5,6 +5,7 @@ using Gazeus.DesafioMatch3.Models;
 using Gazeus.DesafioMatch3.Project.Script.Utils;
 using Gazeus.DesafioMatch3.ScriptableObjects;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Gazeus.DesafioMatch3.Views
@@ -15,10 +16,10 @@ namespace Gazeus.DesafioMatch3.Views
         public event Action<int> OnTilesDestroyed;
 
         [SerializeField] private GridLayoutGroup _boardContainer;
-        [SerializeField] private TileColorRepository _tileColorRepository;
+        [SerializeField] private TileTypeRepository _tileTypeRepository;
         [SerializeField] private TileView _tilePrefab;
         [SerializeField] private TileSpotView _tileSpotPrefab;
-        
+
         private TileView[][] _tiles;
         private TileSpotView[][] _tileSpots;
         private ObjectPool<TileView> _tilePool;
@@ -27,7 +28,7 @@ namespace Gazeus.DesafioMatch3.Views
         {
             int width = board[0].Length;
             int height = board.Length;
-            
+
             _boardContainer.constraintCount = width;
             _tiles = new TileView[height][];
             _tileSpots = new TileSpotView[height][];
@@ -46,11 +47,12 @@ namespace Gazeus.DesafioMatch3.Views
 
                     _tileSpots[y][x] = tileSpot;
 
-                    int tileTypeIndex = board[y][x].Type;
-                    if (tileTypeIndex > -1)
+                    TileVariation variation = board[y][x].Variation;
+                    TileType type = board[y][x].Type;
+                    if (variation is not TileVariation.None)
                     {
                         TileView tile = _tilePool.GetNextObject();
-                        tile.Setup(_tileColorRepository.TileTypeColorList[tileTypeIndex]);
+                        tile.Setup(_tileTypeRepository.GetSpriteFromTileType(type), _tileTypeRepository.GetColorFromTileVariation(variation));
                         tileSpot.SetTile(tile.gameObject);
 
                         _tiles[y][x] = tile;
@@ -68,9 +70,11 @@ namespace Gazeus.DesafioMatch3.Views
                 Vector2Int position = addedTileInfo.Position;
 
                 TileSpotView tileSpot = _tileSpots[position.y][position.x];
-                
+
                 TileView tile = _tilePool.GetNextObject();
-                tile.Setup(_tileColorRepository.TileTypeColorList[addedTileInfo.Type]);
+                TileType type = addedTileInfo.Type;
+                TileVariation variation = addedTileInfo.Variation;
+                tile.Setup(_tileTypeRepository.GetSpriteFromTileType(type), _tileTypeRepository.GetColorFromTileVariation(variation));
                 tileSpot.SetTile(tile.gameObject);
 
                 _tiles[position.y][position.x] = tile;
@@ -91,9 +95,32 @@ namespace Gazeus.DesafioMatch3.Views
                 _tilePool.ReleaseObject(_tiles[position.y][position.x]);
                 _tiles[position.y][position.x] = null;
             }
-            
+
             OnTilesDestroyed?.Invoke(tileCount);
-            return DOVirtual.DelayedCall(0.2f, () => {});
+            return DOVirtual.DelayedCall(0.2f, () => { });
+        }
+
+        public Tween PlaceSpecialItems(List<AddedSpecialItemInfo> specialItems)
+        {
+            Sequence sequence = DOTween.Sequence();
+            foreach (AddedSpecialItemInfo itemInfo in specialItems)
+            {
+                (int x, int y) = (itemInfo.Position.x, itemInfo.Position.y);
+                TileView tile = _tiles[y][x];
+                TileType type = itemInfo.Type;
+                TileVariation variation = itemInfo.Variation;
+
+                Sequence itemSequence = DOTween.Sequence();
+                itemSequence.Join(tile.transform.DOScale(0.0f, 0.05f));
+                itemSequence.AppendCallback(() => tile.Setup(
+                    _tileTypeRepository.GetSpriteFromTileType(type),
+                    _tileTypeRepository.GetColorFromTileVariation(variation)));
+                itemSequence.Append(tile.transform.DOScale(1.0f, 0.1f));
+
+                sequence.Join(itemSequence);
+            }
+
+            return sequence;
         }
 
         public Tween MoveTiles(List<MovedTileInfo> movedTiles)
@@ -138,10 +165,12 @@ namespace Gazeus.DesafioMatch3.Views
         }
 
         #region Events
+
         private void TileSpot_Clicked(int x, int y)
         {
             TileClicked(x, y);
         }
+
         #endregion
     }
 }
