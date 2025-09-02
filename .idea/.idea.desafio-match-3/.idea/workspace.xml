@@ -5,18 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2178ee9c-15cd-4c16-acb8-7cefd3a9f5ff" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/BombSpecialMatch.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/BombSpecialMatch.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/ColorBombSpecialMatch.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/ColorBombSpecialMatch.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/HorizontalLineSweepSpecialMatch.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/HorizontalLineSweepSpecialMatch.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/ISpecialMatch.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/ISpecialMatch.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/SpecialItemType.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/SpecialItemType.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/VerticalLineSweepSpecialMatch.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/VerticalLineSweepSpecialMatch.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Project/Prefabs/Tile.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Project/Prefabs/Tile.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Utils.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Utils/ObjectPool.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Utils/ObjectPool.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Views/TileView.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Views/TileView.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.desafio-match-3/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.desafio-match-3/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Project/Prefabs/BlueTile.prefab" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Project/Prefabs/BlueTile.prefab.meta" beforeDir="false" />
@@ -32,7 +27,10 @@
       <change beforePath="$PROJECT_DIR$/Assets/Project/Prefabs/RedTile.prefab.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Project/Prefabs/YellowTile.prefab" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Project/Prefabs/YellowTile.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/BoardModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/BoardModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Scenes/Gameplay.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Scenes/Gameplay.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/ScriptableObjects/TilePrefabRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/ScriptableObjects/TilePrefabRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Views/BoardView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Views/BoardView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/ScriptableObjects/TilePrefabRepository.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/ScriptableObjects/TilePrefabRepository.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +51,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/37cc348edc804f4cb176b63962c716e7177200/b7/3b755646/Vector2Int.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/de1f8ef4975b4eacbeb0accc1b22c9b02a000/c8/d6944d95/DOTween.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ea489521390f48908a7ce45cb17a684810fc00/fd/e424a610/HashSet`1.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Project/Script/Utils/ObjectPool.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.9/Scripts/Editor/TMP_FontAssetEditor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.9/Scripts/Runtime/TextMeshProUGUI.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -113,15 +112,13 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="10288">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="10288" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="runtimes">
-        <list>
-          <MonoRuntime />
-        </list>
+        <list />
       </option>
       <option name="selectedOptions">
         <list />
@@ -142,7 +139,8 @@
       <workItem from="1756323906107" duration="4392000" />
       <workItem from="1756407882784" duration="8147000" />
       <workItem from="1756674342192" duration="5673000" />
-      <workItem from="1756757891295" duration="9122000" />
+      <workItem from="1756757891295" duration="9812000" />
+      <workItem from="1756828985827" duration="2016000" />
     </task>
     <servers />
   </component>

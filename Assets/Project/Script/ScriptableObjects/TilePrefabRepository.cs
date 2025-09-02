@@ -2,11 +2,11 @@
 
 namespace Gazeus.DesafioMatch3.ScriptableObjects
 {
-    [CreateAssetMenu(fileName = "TilePrefabRepository", menuName = "Gameplay/TilePrefabRepository")]
-    public class TilePrefabRepository : ScriptableObject
+    [CreateAssetMenu(fileName = "TileColorRepository", menuName = "Gameplay/TileColorRepository")]
+    public class TileColorRepository : ScriptableObject
     {
-        [SerializeField] private GameObject[] _tileTypePrefabList;
+        [SerializeField] private Color[] _tileTypeColorList;
 
-        public GameObject[] TileTypePrefabList => _tileTypePrefabList;
+        public Color[] TileTypeColorList => _tileTypeColorList;
     }
 }
