@@ -23,19 +23,22 @@ namespace Gazeus.DesafioMatch3.Views
         private TileSpotView[][] _tileSpots;
         private ObjectPool<TileView> _tilePool;
 
-        public void CreateBoard(List<List<Tile>> board)
+        public void CreateBoard(Tile[][] board)
         {
-            _boardContainer.constraintCount = board[0].Count;
-            _tiles = new TileView[board.Count][];
-            _tileSpots = new TileSpotView[board.Count][];
+            int width = board[0].Length;
+            int height = board.Length;
+            
+            _boardContainer.constraintCount = width;
+            _tiles = new TileView[height][];
+            _tileSpots = new TileSpotView[height][];
             _tilePool = new ObjectPool<TileView>(transform, _tilePrefab);
 
-            for (int y = 0; y < board.Count; y++)
+            for (int y = 0; y < height; y++)
             {
-                _tiles[y] = new TileView[board[0].Count];
-                _tileSpots[y] = new TileSpotView[board[0].Count];
+                _tiles[y] = new TileView[width];
+                _tileSpots[y] = new TileSpotView[width];
 
-                for (int x = 0; x < board[0].Count; x++)
+                for (int x = 0; x < width; x++)
                 {
                     TileSpotView tileSpot = Instantiate(_tileSpotPrefab, _boardContainer.transform, false);
                     tileSpot.SetPosition(x, y);

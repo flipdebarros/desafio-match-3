@@ -6,9 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="2178ee9c-15cd-4c16-acb8-7cefd3a9f5ff" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.desafio-match-3/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.desafio-match-3/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Core/GameService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Core/GameService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Controllers/BoardController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Controllers/BoardController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/BoardModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/BoardModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Utils/ObjectPool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Utils/ObjectPool.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/BombSpecialMatch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/BombSpecialMatch.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/ColorBombSpecialMatch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/ColorBombSpecialMatch.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/HorizontalLineSweepSpecialMatch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/HorizontalLineSweepSpecialMatch.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/ISpecialMatch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/ISpecialMatch.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/VerticalLineSweepSpecialMatch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/VerticalLineSweepSpecialMatch.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Views/BoardView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Views/BoardView.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,16 +184,29 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Project/Script/Models/BoardModel.cs</url>
-          <line>105</line>
+          <line>104</line>
           <properties documentPath="C:\Users\leeom\OneDrive\Documents\Unity Projects\desafio-match-3\Assets\Project\Script\Models\BoardModel.cs" containingFunctionPresentation="Method 'DropTiles'">
             <startOffsets>
-              <option value="3925" />
+              <option value="3896" />
             </startOffsets>
             <endOffsets>
-              <option value="3973" />
+              <option value="3944" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Project/Script/Models/BoardModel.cs</url>
+          <line>36</line>
+          <properties documentPath="C:\Users\leeom\OneDrive\Documents\Unity Projects\desafio-match-3\Assets\Project\Script\Models\BoardModel.cs" containingFunctionPresentation="Method 'SwapTile'">
+            <startOffsets>
+              <option value="1270" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1362" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

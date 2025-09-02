@@ -41,7 +41,7 @@ namespace Gazeus.DesafioMatch3.Controllers
         {
             AddListeners();
 
-            List<List<Tile>> board = _model.StartGame(_boardWidth, _boardHeight);
+            Tile[][] board = _model.StartGame(_boardWidth, _boardHeight);
             _view.CreateBoard(board);
         }
 

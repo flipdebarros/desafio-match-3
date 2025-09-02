@@ -10,17 +10,17 @@ namespace Gazeus.DesafioMatch3.Models
             return horizontalMatches >= 5 || verticalMatches >= 5;
         }
         
-        public List<Vector2Int> AffectedTiles(in List<List<Tile>> board, Vector2Int position, Tile tile)
+        public List<Vector2Int> AffectedTiles(in Tile[][] board, Vector2Int position, Tile tile)
         {
             return GetAllTilesOfType(board, tile.Type);
         }
         
-        private static List<Vector2Int> GetAllTilesOfType(List<List<Tile>> newBoard, int type)
+        private static List<Vector2Int> GetAllTilesOfType(Tile[][] newBoard, int type)
         {
             List<Vector2Int> tiles = new();
-            for (int y = 0; y < newBoard.Count; y++)
+            for (int y = 0; y < newBoard.Length; y++)
             {
-                for (int x = 0; x < newBoard[y].Count; x++)
+                for (int x = 0; x < newBoard[y].Length; x++)
                 {
                     if (newBoard[y][x].Type != type)
                         continue;

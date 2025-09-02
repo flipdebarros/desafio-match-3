@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -8,15 +7,15 @@ namespace Gazeus.DesafioMatch3.Models
 {
     public class BoardModel
     {
-        private List<List<Tile>> _boardTiles;
+        private Tile[][] _boardTiles;
         private List<int> _tilesTypes;
-        public List<ISpecialMatch> _specialMatches;
+        private List<ISpecialMatch> _specialMatches;
         private int _tileCount;
 
         public bool IsValidMovement(int fromX, int fromY, int toX, int toY) =>
             CheckMatches(_boardTiles, fromX, fromY, _boardTiles[toY][toX].Type) || CheckMatches(_boardTiles, toX, toY, _boardTiles[fromY][fromX].Type);
 
-        public List<List<Tile>> StartGame(int boardWidth, int boardHeight)
+        public Tile[][] StartGame(int boardWidth, int boardHeight)
         {
             _tilesTypes = new List<int> { 0, 1, 2, 3 };
             _boardTiles = CreateBoard(boardWidth, boardHeight, _tilesTypes);
@@ -33,7 +32,7 @@ namespace Gazeus.DesafioMatch3.Models
 
         public List<BoardSequence> SwapTile(int fromX, int fromY, int toX, int toY)
         {
-            List<List<Tile>> newBoard = CopyBoard(_boardTiles);
+            Tile[][] newBoard = CopyBoard(_boardTiles);
 
             (newBoard[toY][toX], newBoard[fromY][fromX]) = (newBoard[fromY][fromX], newBoard[toY][toX]);
 
@@ -84,7 +83,7 @@ namespace Gazeus.DesafioMatch3.Models
             return boardSequences;
         }
 
-        private List<MovedTileInfo> DropTiles(List<List<Tile>> newBoard, HashSet<Vector2Int> matchedTiles, out List<Vector2Int> emptySpots)
+        private List<MovedTileInfo> DropTiles(Tile[][] newBoard, HashSet<Vector2Int> matchedTiles, out List<Vector2Int> emptySpots)
         {
             Dictionary<int, MovedTileInfo> movedTiles = new();
             List<MovedTileInfo> movedTilesList = new();
@@ -122,19 +121,7 @@ namespace Gazeus.DesafioMatch3.Models
             return movedTilesList;
         }
 
-        private static Dictionary<int, int> GetLowestGapInColumns(HashSet<Vector2Int> removedTiles)
-        {
-            Dictionary<int, int> lowestGapInColumn = new();
-            foreach (Vector2Int tile in removedTiles)
-            {
-                (int x, int y) = (tile.x, tile.y);
-                if (!lowestGapInColumn.TryAdd(x, y))
-                    lowestGapInColumn[x] = y > lowestGapInColumn[x] ? y : lowestGapInColumn[x];
-            }
-            return lowestGapInColumn;
-        }
-
-        private List<AddedTileInfo> FillBoard(List<List<Tile>> newBoard, List<Vector2Int> emptySpots)
+        private List<AddedTileInfo> FillBoard(Tile[][] newBoard, List<Vector2Int> emptySpots)
         {
             List<AddedTileInfo> addedTiles = new();
             foreach (Vector2Int spot in emptySpots)
@@ -152,33 +139,17 @@ namespace Gazeus.DesafioMatch3.Models
             }
             return addedTiles;
         }
-
-        private static List<List<Tile>> CopyBoard(List<List<Tile>> boardToCopy)
+        
+        private Tile[][] CreateBoard(int width, int height, List<int> tileTypes)
         {
-            List<List<Tile>> newBoard = new(boardToCopy.Count);
-            for (int y = 0; y < boardToCopy.Count; y++)
-            {
-                newBoard.Add(new List<Tile>(boardToCopy[y].Count));
-                for (int x = 0; x < boardToCopy[y].Count; x++)
-                {
-                    Tile tile = boardToCopy[y][x];
-                    newBoard[y].Add(new Tile { Id = tile.Id, Type = tile.Type });
-                }
-            }
-
-            return newBoard;
-        }
-
-        private List<List<Tile>> CreateBoard(int width, int height, List<int> tileTypes)
-        {
-            List<List<Tile>> board = new(height);
+            Tile[][] board = new Tile[height][];
             _tileCount = 0;
             for (int y = 0; y < height; y++)
             {
-                board.Add(new List<Tile>(width));
+                board[y] = new Tile[width];
                 for (int x = 0; x < width; x++)
                 {
-                    board[y].Add(new Tile { Id = -1, Type = -1 });
+                    board[y][x] = new Tile { Id = -1, Type = -1 };
                 }
             }
 
@@ -211,9 +182,9 @@ namespace Gazeus.DesafioMatch3.Models
 
             return board;
         }
-
+        
         private void CheckSpecialMatches(
-            List<List<Tile>> newBoard,
+            Tile[][] newBoard,
             Dictionary<Vector2Int, (int horizontal, int vertical)> matchStats,
             HashSet<Vector2Int> matchedPosition
         )
@@ -230,9 +201,37 @@ namespace Gazeus.DesafioMatch3.Models
                 }
             }
         }
+        
+        private static Dictionary<int, int> GetLowestGapInColumns(HashSet<Vector2Int> removedTiles)
+        {
+            Dictionary<int, int> lowestGapInColumn = new();
+            foreach (Vector2Int tile in removedTiles)
+            {
+                (int x, int y) = (tile.x, tile.y);
+                if (!lowestGapInColumn.TryAdd(x, y))
+                    lowestGapInColumn[x] = y > lowestGapInColumn[x] ? y : lowestGapInColumn[x];
+            }
+            return lowestGapInColumn;
+        }
 
+        private static Tile[][] CopyBoard(Tile[][] boardToCopy)
+        {
+            Tile[][] newBoard = new Tile[boardToCopy.Length][];
+            for (int y = 0; y < boardToCopy.Length; y++)
+            {
+                newBoard[y] = new Tile[boardToCopy[y].Length];
+                for (int x = 0; x < boardToCopy[y].Length; x++)
+                {
+                    Tile tile = boardToCopy[y][x];
+                    newBoard[y][x] = new Tile { Id = tile.Id, Type = tile.Type };
+                }
+            }
+
+            return newBoard;
+        }
+        
         private static HashSet<Vector2Int> FindMatches(
-            List<List<Tile>> newBoard,
+            Tile[][] newBoard,
             List<Vector2Int> changedTiles,
             out Dictionary<Vector2Int, (int horizontal, int vertical)> matchStats
         )
@@ -243,8 +242,8 @@ namespace Gazeus.DesafioMatch3.Models
             HashSet<Vector2Int> visitedTiles = new();
             Stack<Vector2Int> tileStack = new();
 
-            int width = newBoard[0].Count;
-            int height = newBoard.Count;
+            int width = newBoard[0].Length;
+            int height = newBoard.Length;
 
             foreach (Vector2Int tile in changedTiles)
             {
@@ -290,10 +289,10 @@ namespace Gazeus.DesafioMatch3.Models
             return matchedTiles;
         }
 
-        private static bool CheckMatches(List<List<Tile>> newBoard, int x, int y, int type) =>
+        private static bool CheckMatches(Tile[][] newBoard, int x, int y, int type) =>
             CheckMatchHorizontal(newBoard, x, y, type) >= 3 || CheckMatchVertical(newBoard, x, y, type) >= 3;
 
-        private static int CheckMatchHorizontal(List<List<Tile>> board, int x, int y, int type)
+        private static int CheckMatchHorizontal(Tile[][] board, int x, int y, int type)
         {
             int count = 1;
             if (x > 1 && type == board[y][x - 1].Type && type == board[y][x - 2].Type)
@@ -301,15 +300,15 @@ namespace Gazeus.DesafioMatch3.Models
             else if (x > 0 && type == board[y][x - 1].Type)
                 count++;
 
-            if (x < board[y].Count - 2 && type == board[y][x + 1].Type && type == board[y][x + 2].Type)
+            if (x < board[y].Length - 2 && type == board[y][x + 1].Type && type == board[y][x + 2].Type)
                 count += 2;
-            else if (x < board[y].Count - 1 && type == board[y][x + 1].Type)
+            else if (x < board[y].Length - 1 && type == board[y][x + 1].Type)
                 count++;
 
             return count;
         }
 
-        private static int CheckMatchVertical(List<List<Tile>> board, int x, int y, int type)
+        private static int CheckMatchVertical(Tile[][] board, int x, int y, int type)
         {
             int count = 1;
             if (y > 1 && type == board[y - 1][x].Type && type == board[y - 2][x].Type)
@@ -317,17 +316,14 @@ namespace Gazeus.DesafioMatch3.Models
             else if (y > 0 && type == board[y - 1][x].Type)
                 count++;
 
-            if (y < board.Count - 2 && type == board[y + 1][x].Type && type == board[y + 2][x].Type)
+            if (y < board.Length - 2 && type == board[y + 1][x].Type && type == board[y + 2][x].Type)
                 count += 2;
-            else if (y < board.Count - 1 && type == board[y + 1][x].Type)
+            else if (y < board.Length - 1 && type == board[y + 1][x].Type)
                 count++;
 
             return count;
         }
 
-        private static bool IsValidCoordinates(int x, int y, int width, int height)
-        {
-            return x >= 0 && x < width && y >= 0 && y < height;
-        }
+        private static bool IsValidCoordinates(int x, int y, int width, int height) => x >= 0 && x < width && y >= 0 && y < height;
     }
 }
