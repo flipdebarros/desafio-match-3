@@ -5,42 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2178ee9c-15cd-4c16-acb8-7cefd3a9f5ff" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/SpecialItemUtils.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/SpecialItemUtils.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/Tiles.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/Tiles/AddedSpecialItemInfo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/Tiles/AddedSpecialItemInfo.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/Tiles/TileType.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/Tiles/TileType.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/Tiles/TileVariation.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/Tiles/TileVariation.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/VerticalRocketSpecialMatch.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Project/Script/ScriptableObjects/TileTypeRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.desafio-match-3/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.desafio-match-3/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Scenes/Gameplay.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Scenes/Gameplay.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Controllers/BoardController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Controllers/BoardController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/AddedTileInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/Tiles/AddedTileInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/AddedTileInfo.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/Tiles/AddedTileInfo.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/BoardModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/BoardModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/BoardSequence.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/BoardSequence.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/BombSpecialMatch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/SimpleBombSpecialMatch.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/BombSpecialMatch.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/SimpleBombSpecialMatch.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/ColorBombSpecialMatch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/ColorBombSpecialMatch.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/HorizontalLineSweepSpecialMatch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/HorizontalRocketSpecialMatch.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/HorizontalLineSweepSpecialMatch.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/HorizontalRocketSpecialMatch.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/ISpecialMatch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/ISpecialMatch.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/MovedTileInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/Tiles/MovedTileInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/MovedTileInfo.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/Tiles/MovedTileInfo.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/Tile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/Tiles/Tile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/Tile.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/Tiles/Tile.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/VerticalLineSweepSpecialMatch.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Models/VerticalLineSweepSpecialMatch.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Models/VerticalRocketSpecialMatch.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/ScriptableObjects/TilePrefabRepository.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/ScriptableObjects/TilePrefabRepository.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/ScriptableObjects/TileTypeRepository.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Views/BoardView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Views/BoardView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/Script/Views/TileView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Project/Script/Views/TileView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/ScriptableObjects/TilePrefabRepository.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Project/ScriptableObjects/TilePrefabRepository.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
